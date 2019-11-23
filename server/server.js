@@ -1,6 +1,10 @@
+//imports express
 let express = require('express');
+//gives express a nickname, app
 const app = express();
+//imports body-parser
 const bodyParser = require('body-parser');
+// gives local 5000 a nickname, PORT
 const PORT = 5000;
 
 // Allows loading of files from the public directory
@@ -13,45 +17,32 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/input', (req, res) => {
-    const inputObject = req.body.inputObject;
-    //const val1 = 6;
-    //const val2 = 9;               
-    const val1 = parseInt(inputObject.input1);
-    const val2 = parseInt(inputObject.input2);
-    //const mathOp = inputObject.input3;
-    const mathOp = "divide"
+    const inputObject = req.body;
+    const val1 = parseFloat(inputObject.input1);
+    const val2 = parseFloat(inputObject.input2);
+    const mathOp = inputObject.input3;
     let answer;
 
     if (mathOp === "add") {
         answer = val1 + val2;
-        console.log(answer);
+        console.log(`${val1} + ${val2} = ${answer}`);
         res.sendStatus(418);
     } else if (mathOp === "subtract") {
         answer = val1 - val2;
-        console.log(answer);
+        console.log(`${val1} - ${val2} = ${answer}`);
         res.sendStatus(418);
     } else if (mathOp === "multiply") {
         answer = val1 * val2;
-        console.log(answer);
+        console.log(`${val1} * ${val2} = ${answer}`);
         res.sendStatus(418);
     } else if (mathOp === "divide") {
         answer = val1 / val2;
-        console.log(answer);
+        console.log(`${val1} / ${val2} = ${answer}`);
         res.sendStatus(418);
     } else {
         res.sendStatus(500);
         console.log('oh no')
     }
-
-    //const mathOp = inputObject.input3;
-
-    // const mathOp = ?
-
-    // if (mathOp === "add") {
-    //     val1 + val2;
-    // }
-
-    // console.log('Did math happen?')
 });
 
 
