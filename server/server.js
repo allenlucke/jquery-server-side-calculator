@@ -14,10 +14,10 @@ app.use(bodyParser.json());
 
 app.post('/input', (req, res) => {
     const inputObject = req.body.inputObject;
-    const val1 = 6;
-    const val2 = 9;               
-    //const val1 = parseInt(inputObject.input1);
-    //const val2 = parseInt(inputObject.input2);
+    //const val1 = 6;
+    //const val2 = 9;               
+    const val1 = parseInt(inputObject.input1);
+    const val2 = parseInt(inputObject.input2);
     //const mathOp = inputObject.input3;
     const mathOp = "divide"
     let answer;
@@ -43,7 +43,6 @@ app.post('/input', (req, res) => {
         console.log('oh no')
     }
 
-
     //const mathOp = inputObject.input3;
 
     // const mathOp = ?
@@ -53,8 +52,6 @@ app.post('/input', (req, res) => {
     // }
 
     // console.log('Did math happen?')
-
-
 });
 
 
