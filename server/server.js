@@ -6,7 +6,6 @@ const app = express();
 const bodyParser = require('body-parser');
 // gives local 5000 a nickname, PORT
 const PORT = 5000;
-
 // Allows loading of files from the public directory
 app.use(express.static('server/public'));
 // Allows req.body
@@ -16,6 +15,8 @@ app.use(bodyParser.urlencoded({
 // Allows use of Postman
 app.use(bodyParser.json());
 
+const history = [];
+
 app.post('/input', (req, res) => {
     const inputObject = req.body;
     const val1 = parseFloat(inputObject.input1);
@@ -23,7 +24,6 @@ app.post('/input', (req, res) => {
     const val2 = parseFloat(inputObject.input2);
     
     let answer;
-    const history= [];
 
     if (mathOp === "add") {
         answer = val1 + val2;
@@ -41,12 +41,16 @@ app.post('/input', (req, res) => {
         answer = val1 / val2;
         console.log(`${val1} / ${val2} = ${answer}`);
         res.sendStatus(418);
-    }
+    } //pushes calculation into the history
     history.push( {
         inputObject: inputObject,
         answer: answer,
     });
     console.log(history) 
+});
+
+app.get(`/history`, (req,res) => {
+    res.send(history);
 });
 
 //Activates the server
