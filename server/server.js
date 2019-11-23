@@ -19,9 +19,11 @@ app.use(bodyParser.json());
 app.post('/input', (req, res) => {
     const inputObject = req.body;
     const val1 = parseFloat(inputObject.input1);
+    const mathOp = inputObject.inputOp;
     const val2 = parseFloat(inputObject.input2);
-    const mathOp = inputObject.input3;
+    
     let answer;
+    const history= [];
 
     if (mathOp === "add") {
         answer = val1 + val2;
@@ -39,12 +41,13 @@ app.post('/input', (req, res) => {
         answer = val1 / val2;
         console.log(`${val1} / ${val2} = ${answer}`);
         res.sendStatus(418);
-    } else {
-        res.sendStatus(500);
-        console.log('oh no')
     }
+    history.push( {
+        inputObject: inputObject,
+        answer: answer,
+    });
+    console.log(history) 
 });
-
 
 //Activates the server
 app.listen(PORT, () => {
