@@ -1,4 +1,3 @@
-
 $(document).ready(init);
 
 function init() {
@@ -10,7 +9,7 @@ function init() {
     $('.js-btn-divide').on('click', onDivideClick);
     $('.js-btn-equals').on('click', onEqualsClick);
     $('.js-btn-clear').on('click', onClearClick);
-
+    getHistory();
 };
 
 let mathOp;
@@ -82,6 +81,16 @@ function render(response) {
 
 function render2(response) {
     const history = $(`.js-history`);
-    history.empty();
-    history.append(`${response}`);
-};
+    for (let i = 0; i < response.length; i++) {
+        const problem = response[i];
+    //history.empty();
+    history.append(`
+            <tr data-id="${i}">
+                <td>${problem.inputObject.input1}</td>
+                <td>${problem.inputObject.inputOp}</td>
+                <td>${problem.inputObject.input2}</td>
+                <td>${problem.answer}</td>
+            </tr>  
+        `);
+}
+}

@@ -13,7 +13,7 @@
 <body>
     <h1>Server Side Calculator</h1>
 
-    <div>
+    <div class="css-calculator">
         <input type="number" name="input1" id="number1" class="js-field-input1"/>
         <button class="js-btn-add">+</button>
         <button class="js-btn-subtract">-</button>
@@ -24,6 +24,19 @@
         <button class="js-btn-clear">C</button>
     </div>
     <h2>Answer = <span class="js-answer"></span></h2>
-    <ul class="js-history"></ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Input</th>
+                <th>Operator</th>
+                <th>Input</th>
+                <th>Answer</th>
+            </tr>
+        </thead>
+        <tbody class="js-history">
+
+        </tbody>
+    </table>
 </body>
 </html>
