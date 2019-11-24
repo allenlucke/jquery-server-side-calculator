@@ -42,6 +42,7 @@ function onEqualsClick(event) {
     submitCalculation(inputObject);
 };
 //API Calls
+//post call
 function submitCalculation(inputObject) {
     console.log(inputObject)
     $.ajax({
@@ -58,6 +59,7 @@ function submitCalculation(inputObject) {
         console.log('POST Error: ', err);
     });
 };
+//get call
 function getHistory() {
     $.ajax({
         method: 'GET',
@@ -73,14 +75,16 @@ function getHistory() {
 };
 
 //Renders
+//renders answer from post response
 function render(response) {
     const newAnswer = $(`.js-answer`);
     newAnswer.empty();
     newAnswer.append(`${response.answer}`);
 }
-
+//renders history from get response
 function render2(response) {
     const history = $(`.js-history`);
+    history.empty();
     for (let i = 0; i < response.length; i++) {
         const problem = response[i];
     //history.empty();
@@ -92,5 +96,5 @@ function render2(response) {
                 <td>${problem.answer}</td>
             </tr>  
         `);
-}
+    }
 }
