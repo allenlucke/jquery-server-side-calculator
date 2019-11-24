@@ -24,7 +24,7 @@ app.post('/input', (req, res) => {
     const mathOp = inputObject.inputOp;
     const val2 = parseFloat(inputObject.input2);
     
-    let answer;
+    let answer = 0;
 
     if (mathOp === "add") {
         answer = val1 + val2;

@@ -1,4 +1,3 @@
-let mathOp = "allen";
 
 $(document).ready(init);
 
@@ -14,6 +13,9 @@ function init() {
 
 };
 
+let mathOp;
+
+// Event Handlers
 function onAddClick(event) {
     mathOp = "add";
 };
@@ -27,14 +29,37 @@ function onDivideClick(event) {
     mathOp = "divide"
 };
 function onClearClick(event) {
-//this needs to clear the inputs
+    $(`.js-field-input1`).val('')
+    $(`.js-field-input2`).val('')
+    mathOp = null;
 };
-function onEqualsClick() {
-    constInputForServer = {
-        input1: $(`.js-field-input1`),
+function onEqualsClick(event) {
+    inputObject = {
+        input1: $(`.js-field-input1`).val(),
         inputOp: mathOp,
-        input2: $(`.js-field-input2`),
-    
-    }
+        input2: $(`.js-field-input2`).val(),
+    };
+    console.log(inputObject);
+    submitCalculation(inputObject);
 };
-function render()
+//API Calls
+function submitCalculation(inputObject) {
+    console.log(inputObject)
+    $.ajax({
+        method: 'POST',
+        url: '/input',
+        data: inputObject,
+    })
+    .then(function(response) {
+        console.log('POST Response: ', response);
+        getBalance();
+    })
+    .catch(function(err) {
+        console.log('POST Error: ', err);
+    });
+};
+//Render
+function render() {
+    const newAnswer = $(`.js-answer`);
+    newAnswer.append(`answer.answer`);
+}
