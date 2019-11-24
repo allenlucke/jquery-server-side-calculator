@@ -52,14 +52,36 @@ function submitCalculation(inputObject) {
     })
     .then(function(response) {
         console.log('POST Response: ', response);
-        getBalance();
+        render(response);
+        getHistory();
     })
     .catch(function(err) {
         console.log('POST Error: ', err);
     });
 };
-//Render
-function render() {
+function getHistory() {
+    $.ajax({
+        method: 'GET',
+        url: '/history',
+    })
+    .then(function(response) {
+        console.log('GET Response: ', response);
+        render2(response);
+    })
+    .catch(function(err) {
+        console.log('GET Error: ', err);
+    });
+};
+
+//Renders
+function render(response) {
     const newAnswer = $(`.js-answer`);
-    newAnswer.append(`answer.answer`);
+    newAnswer.empty();
+    newAnswer.append(`${response.answer}`);
 }
+
+function render2(response) {
+    const history = $(`.js-history`);
+    history.empty();
+    history.append(`${response}`);
+};

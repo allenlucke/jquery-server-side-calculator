@@ -29,30 +29,25 @@ app.post('/input', (req, res) => {
     if (mathOp === "add") {
         answer = val1 + val2;
         console.log(`${val1} + ${val2} = ${answer}`);
-        //exports answer
-        res.send({answer: answer});
     } else if (mathOp === "subtract") {
         answer = val1 - val2;
         console.log(`${val1} - ${val2} = ${answer}`);
-        //exports answer
-        res.send({answer: answer});
     } else if (mathOp === "multiply") {
         answer = val1 * val2;
         console.log(`${val1} * ${val2} = ${answer}`);
-        //exports answer
-        res.send({answer: answer});
     } else if (mathOp === "divide") {
         answer = val1 / val2;
         console.log(`${val1} / ${val2} = ${answer}`);
-        //exports answer
-        res.send({answer: answer});
     } 
     //pushes equation and answer into the history
     history.push( {
         inputObject: inputObject,
         answer: answer,
     });
+    
     console.log(history) 
+    //exports answer
+    res.send({answer: answer});
 });
 
 //exports calculations 
