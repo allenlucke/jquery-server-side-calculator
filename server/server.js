@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 
 const history = [];
 
+//takes in user input
 app.post('/input', (req, res) => {
     const inputObject = req.body;
     const val1 = parseFloat(inputObject.input1);
@@ -28,20 +29,25 @@ app.post('/input', (req, res) => {
     if (mathOp === "add") {
         answer = val1 + val2;
         console.log(`${val1} + ${val2} = ${answer}`);
-        res.sendStatus(418);
+        //exports answer
+        res.send({answer: answer});
     } else if (mathOp === "subtract") {
         answer = val1 - val2;
         console.log(`${val1} - ${val2} = ${answer}`);
-        res.sendStatus(418);
+        //exports answer
+        res.send({answer: answer});
     } else if (mathOp === "multiply") {
         answer = val1 * val2;
         console.log(`${val1} * ${val2} = ${answer}`);
-        res.sendStatus(418);
+        //exports answer
+        res.send({answer: answer});
     } else if (mathOp === "divide") {
         answer = val1 / val2;
         console.log(`${val1} / ${val2} = ${answer}`);
-        res.sendStatus(418);
-    } //pushes calculation into the history
+        //exports answer
+        res.send({answer: answer});
+    } 
+    //pushes equation and answer into the history
     history.push( {
         inputObject: inputObject,
         answer: answer,
@@ -49,8 +55,10 @@ app.post('/input', (req, res) => {
     console.log(history) 
 });
 
+//exports calculations 
 app.get(`/history`, (req,res) => {
     res.send(history);
+    console.log(history); 
 });
 
 //Activates the server
