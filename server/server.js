@@ -23,7 +23,7 @@ app.post('/input', (req, res) => {
     const val1 = parseFloat(inputObject.input1);
     const mathOp = inputObject.inputOp;
     const val2 = parseFloat(inputObject.input2);
-    
+
     let answer = 0;
 
     if (mathOp === "add") {
@@ -44,7 +44,6 @@ app.post('/input', (req, res) => {
         inputObject: inputObject,
         answer: answer,
     });
-    
     console.log(history) 
     //exports answer
     res.send({answer: answer});

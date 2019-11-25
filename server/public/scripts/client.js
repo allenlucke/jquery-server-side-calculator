@@ -13,6 +13,7 @@ function init() {
 };
 
 let mathOp;
+let operatorSymbol;
 
 // Event Handlers
 function onAddClick(event) {
@@ -73,7 +74,6 @@ function getHistory() {
         console.log('GET Error: ', err);
     });
 };
-
 //Renders
 //renders answer from post response
 function render(response) {
@@ -87,11 +87,21 @@ function render2(response) {
     history.empty();
     for (let i = 0; i < response.length; i++) {
         const problem = response[i];
-    //history.empty();
+        let operator = problem.inputObject.inputOp;
+        let operatorSymbol;
+        if (operator === "add") {
+        operatorSymbol = '+';
+        } else if (operator === "subtract") {
+        operatorSymbol = '-';
+        } else if (operator === "multiply") {
+        operatorSymbol = '*';
+        } else if (operator === "divide") {
+        operatorSymbol = '/';
+    } 
     history.append(`
             <tr data-id="${i}">
                 <td>${problem.inputObject.input1}</td>
-                <td>${problem.inputObject.inputOp}</td>
+                <td>${operatorSymbol}</td>
                 <td>${problem.inputObject.input2}</td>
                 <td>${problem.answer}</td>
             </tr>  
