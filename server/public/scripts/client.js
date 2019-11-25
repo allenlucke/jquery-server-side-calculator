@@ -2,7 +2,7 @@ $(document).ready(init);
 
 function init() {
     console.log(`Hi`);
-    
+
     $('.js-btn-add').on('click', onAddClick);
     $('.js-btn-subtract').on('click', onSubtractClick);
     $('.js-btn-multiply').on('click', onMultiplyClick);
@@ -19,20 +19,25 @@ let operatorSymbol;
 function onAddClick(event) {
     mathOp = "add";
 };
+
 function onSubtractClick(event) {
     mathOp = "subtract";
 };
+
 function onMultiplyClick(event) {
     mathOp = "multiply";
 };
+
 function onDivideClick(event) {
     mathOp = "divide"
 };
+
 function onClearClick(event) {
     $(`.js-field-input1`).val('')
     $(`.js-field-input2`).val('')
     mathOp = null;
 };
+
 function onEqualsClick(event) {
     inputObject = {
         input1: $(`.js-field-input1`).val(),
@@ -47,32 +52,32 @@ function onEqualsClick(event) {
 function submitCalculation(inputObject) {
     console.log(inputObject)
     $.ajax({
-        method: 'POST',
-        url: '/input',
-        data: inputObject,
-    })
-    .then(function(response) {
-        console.log('POST Response: ', response);
-        render(response);
-        getHistory();
-    })
-    .catch(function(err) {
-        console.log('POST Error: ', err);
-    });
+            method: 'POST',
+            url: '/input',
+            data: inputObject,
+        })
+        .then(function (response) {
+            console.log('POST Response: ', response);
+            render(response);
+            getHistory();
+        })
+        .catch(function (err) {
+            console.log('POST Error: ', err);
+        });
 };
 //get call
 function getHistory() {
     $.ajax({
-        method: 'GET',
-        url: '/history',
-    })
-    .then(function(response) {
-        console.log('GET Response: ', response);
-        render2(response);
-    })
-    .catch(function(err) {
-        console.log('GET Error: ', err);
-    });
+            method: 'GET',
+            url: '/history',
+        })
+        .then(function (response) {
+            console.log('GET Response: ', response);
+            render2(response);
+        })
+        .catch(function (err) {
+            console.log('GET Error: ', err);
+        });
 };
 //Renders
 //renders answer from post response
@@ -90,15 +95,15 @@ function render2(response) {
         let operator = problem.inputObject.inputOp;
         let operatorSymbol;
         if (operator === "add") {
-        operatorSymbol = '+';
+            operatorSymbol = '+';
         } else if (operator === "subtract") {
-        operatorSymbol = '-';
+            operatorSymbol = '-';
         } else if (operator === "multiply") {
-        operatorSymbol = '*';
+            operatorSymbol = '*';
         } else if (operator === "divide") {
-        operatorSymbol = '/';
-    } 
-    history.append(`
+            operatorSymbol = '/';
+        }
+        history.append(`
             <tr data-id="${i}">
                 <td>${problem.inputObject.input1}</td>
                 <td>${operatorSymbol}</td>

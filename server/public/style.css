@@ -2,40 +2,49 @@ body {
     background-color: cadetblue;
     //background-image: url("https://images.unsplash.com/photo-1564986410613-97e0b371efe5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1360&q=80");
 }
+
 h1 {
     text-align: center;
     font-size: 52px;
 }
+
 h2 {
     text-align: center;
     font-size: 32px;
 }
+
 button {
     width: 30px;
     height: 30px;
     font-size: 20px;
     background-color: slategray;
 }
+
 input {
     height: 30px;
 }
+
 table {
     width: 100%;
     text-align: center;
 }
+
 tr {
     font-size: 20px;
 }
+
 .css-calculator {
     text-align: center;
 }
+
 .js-btn-equals {
     width: 60px;
 }
+
 .js-btn-clear {
     background-color: red;
 }
-.js-btn-equals{
+
+.js-btn-equals {
     background-color: greenyellow;
 }
-

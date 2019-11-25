@@ -38,21 +38,23 @@ app.post('/input', (req, res) => {
     } else if (mathOp === "divide") {
         answer = val1 / val2;
         console.log(`${val1} / ${val2} = ${answer}`);
-    } 
+    }
     //pushes equation and answer into the history
-    history.push( {
+    history.push({
         inputObject: inputObject,
         answer: answer,
     });
-    console.log(history) 
+    console.log(history)
     //exports answer
-    res.send({answer: answer});
+    res.send({
+        answer: answer
+    });
 });
 
 //exports calculations 
-app.get(`/history`, (req,res) => {
+app.get(`/history`, (req, res) => {
     res.send(history);
-    console.log(history); 
+    console.log(history);
 });
 
 //Activates the server
